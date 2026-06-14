@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campus Icon Library</title>
+<style>
+:root {
+  --bg: #ffffff;
+  --bg-sub: #f4f6fb;
+  --bg-card: #f8fafd;
+  --bg-hover: #edf1f9;
+  --border: #dde3f0;
+  --text: #0d1f40;
+  --text-muted: #6b7a99;
+  --accent: #174891;
+  --accent-light: #e8eef8;
+  --accent-hover: #0f3070;
+  --icon-color: #174891;
+  --logo: #003366;
+  --red: #e03e3e;
+}
+[data-theme="dark"] {
+  --bg: #09090b;
+  --bg-sub: #111318;
+  --bg-card: #15181f;
+  --bg-hover: #1e2230;
+  --border: #2a2f3e;
+  --text: #e8edf8;
+  --text-muted: #6b7a99;
+  --accent: #4a7fd4;
+  --accent-light: #1a2540;
+  --accent-hover: #6a9fe4;
+  --icon-color: #ffffff;
+  --logo: #ffffff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px;line-height:1.5}
+
+/* HEADER */
+.header{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--border);padding:0 20px;height:56px;display:flex;align-items:center;gap:14px}
+.logo{font-size:15px;font-weight:700;letter-spacing:-.01em;color:var(--accent);flex-shrink:0;display:flex;align-items:center;gap:8px}
+.logo-mark{width:32px;height:32px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-mark svg{width:32px;height:32px}
+.logo-text{display:flex;flex-direction:column;line-height:1.1}
+.logo-text .sub{font-size:10px;font-weight:400;color:var(--text-muted);letter-spacing:.03em}
+.logo-mark-full{display:flex;align-items:center;color:var(--logo)}
+.logo-mark-full svg{display:block;height:28px;width:auto}
+.logo-divider{width:1px;height:18px;background:var(--border);flex-shrink:0}
+.logo-sub2{font-size:12px;font-weight:500;color:var(--text-muted);letter-spacing:.02em;white-space:nowrap}
+.search-wrap{flex:1;max-width:380px;position:relative}
+.search-ic{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text-muted);pointer-events:none}
+.search-input{width:100%;padding:7px 12px 7px 32px;background:var(--bg-sub);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;outline:none;transition:border-color .15s}
+.search-input::placeholder{color:var(--text-muted)}
+.search-input:focus{border-color:var(--accent)}
+.header-right{margin-left:auto;display:flex;align-items:center;gap:6px}
+.count-badge{font-size:12px;color:var(--text-muted);padding:0 4px}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:8px;border:none;cursor:pointer;font-size:13px;font-weight:500;transition:all .15s;white-space:nowrap}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-hover)}
+.btn-ghost{background:transparent;color:var(--text-muted);border:1px solid var(--border)}
+.btn-ghost:hover{background:var(--bg-hover);color:var(--text)}
+.btn-sm{padding:5px 11px;font-size:12px}
+.btn-icon{padding:7px;border-radius:8px;background:transparent;border:1px solid var(--border);cursor:pointer;color:var(--text-muted);transition:all .15s;display:flex;align-items:center;justify-content:center}
+.btn-icon:hover{background:var(--bg-hover);color:var(--text)}
+.btn-danger{background:var(--red);color:#fff;border:none}
+.btn-danger:hover{opacity:.85}
+
+/* RULES BANNER */
+
+/* LAYOUT */
+.layout{display:flex;height:calc(100vh - 56px)}
+.grid-area{flex:1;overflow-y:auto;padding:20px}
+.grid-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.grid-label{font-size:12px;color:var(--text-muted)}
+.icon-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:3px}
+.icon-card{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:15px 6px 10px;border-radius:10px;cursor:pointer;transition:background .1s;gap:7px;border:1px solid transparent;user-select:none}
+.icon-card:hover{background:var(--bg-hover)}
+.icon-card.selected{background:var(--accent-light);border-color:var(--accent)}
+.icon-card svg{width:24px;height:24px;color:var(--icon-color)}
+.icon-card-name{font-size:10px;color:var(--text-muted);text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:80px}
+.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;height:240px;gap:8px;color:var(--text-muted)}
+.empty-state svg{width:36px;height:36px;opacity:.25;color:var(--text-muted)}
+.empty-state.hidden{display:none}
+
+/* DETAIL PANEL */
+.detail-panel{width:296px;flex-shrink:0;border-left:1px solid var(--border);overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:16px}
+.detail-panel.hidden{display:none}
+.detail-preview-bg{background:var(--bg-sub);border-radius:14px;aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:28px;border:1px solid var(--border);position:relative}
+.detail-preview-bg svg{width:100%;height:100%;color:var(--icon-color)}
+.detail-name{font-size:17px;font-weight:600;word-break:break-all}
+.sizes-row{display:flex;align-items:flex-end;gap:14px}
+.size-item{display:flex;flex-direction:column;align-items:center;gap:4px}
+.size-item .lbl{font-size:10px;color:var(--text-muted)}
+.size-item svg{color:var(--icon-color)}
+.copy-grid{display:flex;flex-direction:column;gap:5px}
+.copy-row{display:flex;align-items:center;justify-content:space-between;padding:9px 11px;background:var(--bg-sub);border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:all .15s;gap:8px}
+.copy-row:hover{border-color:var(--accent);background:var(--accent-light)}
+.copy-row-left .title{font-size:12px;font-weight:600}
+.copy-row-left .sub{font-size:11px;color:var(--text-muted);margin-top:1px}
+.copy-row svg{width:13px;height:13px;color:var(--text-muted);flex-shrink:0}
+.detail-actions{display:flex;gap:6px;flex-wrap:wrap}
+.detail-delete:hover{background:rgba(224,62,62,.08);border-color:var(--red);color:var(--red)}
+.divider{height:1px;background:var(--border)}
+.tags{display:flex;flex-wrap:wrap;gap:4px}
+.tag{padding:2px 8px;background:var(--bg-sub);border:1px solid var(--border);border-radius:4px;font-size:11px;color:var(--text-muted)}
+
+/* MODALS */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:200;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);padding:16px}
+.overlay.hidden{display:none}
+.modal{background:var(--bg);border:1px solid var(--border);border-radius:16px;max-width:100%;max-height:90vh;overflow-y:auto;padding:22px;display:flex;flex-direction:column;gap:16px}
+.modal-hd{display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.modal-title{font-size:16px;font-weight:600}
+.modal-close{background:none;border:none;cursor:pointer;color:var(--text-muted);padding:4px;border-radius:6px;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.modal-close:hover{background:var(--bg-hover);color:var(--text)}
+
+/* AI GENERATION MODAL */
+#draw-modal-inner{width:560px}
+.ai-modal-body{display:flex;flex-direction:column;gap:0}
+.ai-step{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--border)}
+.ai-step:last-child{border-bottom:none}
+.ai-step-num{width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.ai-step-content{flex:1;display:flex;flex-direction:column;gap:7px;min-width:0}
+.ai-prompt-label{font-size:12px;font-weight:600;color:var(--text)}
+.ai-prompt-textarea{width:100%;padding:9px 11px;background:var(--bg-sub);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;outline:none;resize:none;line-height:1.5}
+.ai-prompt-textarea:focus{border-color:var(--accent)}
+.ai-hint{font-size:11px;color:var(--text-muted);line-height:1.6}
+.ai-preview-area{display:flex;gap:12px;align-items:center}
+.ai-preview-large{width:96px;height:96px;flex-shrink:0;background:var(--bg-sub);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center}
+.ai-preview-large svg{color:var(--icon-color)}
+.ai-svg-editor{width:100%;padding:9px 11px;background:var(--bg-sub);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:11px;font-family:ui-monospace,'SFMono-Regular',Consolas,monospace;outline:none;resize:vertical;line-height:1.5}
+.ai-svg-editor:focus{border-color:var(--accent)}
+.ai-sizes-row{display:flex;align-items:flex-end;gap:10px}
+.img-drop{border:1.5px dashed var(--border);border-radius:8px;padding:12px;cursor:pointer;transition:all .15s;background:var(--bg-sub)}
+.img-drop:hover,.img-drop.dragover{border-color:var(--accent);background:var(--accent-light)}
+.img-drop-empty{display:flex;align-items:center;gap:10px;color:var(--text-muted);font-size:11px;line-height:1.5}
+.img-drop-empty svg{flex-shrink:0;color:var(--text-muted)}
+.img-drop-preview{display:flex;align-items:center;gap:12px}
+.img-drop-preview img{width:56px;height:56px;object-fit:contain;border:1px solid var(--border);border-radius:6px;background:var(--bg)}
+.ai-refine{display:flex;flex-direction:column;gap:6px}
+
+/* SHARED */
+.rule-section{display:flex;flex-direction:column;gap:5px}
+.rule-head{font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em}
+.rule-ctrl{width:100%;padding:7px 10px;background:var(--bg-sub);border:1px solid var(--border);border-radius:7px;color:var(--text);font-size:13px;outline:none}
+.rule-ctrl:focus{border-color:var(--accent)}
+.canvas-toolbar{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.canvas-hint{font-size:11px;color:var(--text-muted)}
+.modal-ft{display:flex;gap:8px;align-items:center;flex-shrink:0}
+.name-input{flex:1;padding:8px 12px;background:var(--bg-sub);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;outline:none}
+.name-input:focus{border-color:var(--accent)}
+
+/* EDIT MODAL */
+#edit-modal-inner{width:820px}
+.edit-body{display:grid;grid-template-columns:1fr 280px;gap:16px}
+.editor-area{display:flex;flex-direction:column;gap:8px}
+.svg-editor-wrap{flex:1}
+.svg-editor{width:100%;height:220px;padding:10px;background:var(--bg-sub);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:12px;font-family:ui-monospace,'SFMono-Regular',Consolas,monospace;outline:none;resize:vertical;line-height:1.5}
+.svg-editor:focus{border-color:var(--accent)}
+.edit-preview-col{display:flex;flex-direction:column;gap:10px}
+.edit-preview-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.edit-prev-item{display:flex;flex-direction:column;align-items:center;gap:4px}
+.edit-prev-item .lbl{font-size:10px;color:var(--text-muted)}
+.edit-prev-bg{background:var(--bg-sub);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center}
+.edit-prev-bg svg{color:var(--icon-color)}
+.snap-actions{display:flex;flex-direction:column;gap:5px}
+
+/* TOAST */
+.toast{position:fixed;bottom:20px;right:20px;background:var(--text);color:var(--bg);padding:9px 16px;border-radius:8px;font-size:13px;font-weight:500;opacity:0;transform:translateY(6px);transition:all .2s;z-index:400;pointer-events:none}
+.toast.show{opacity:1;transform:translateY(0)}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+
+@media(max-width:700px){
+  .modal-body,.edit-body{grid-template-columns:1fr}
+  .layout{flex-direction:column}
+  .detail-panel{width:100%;border-left:none;border-top:1px solid var(--border)}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="logo">
+    <span class="logo-mark-full" aria-label="logo">
+      <svg width="103" height="28" viewBox="0 0 118 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill="currentColor" d="M16.1333 19.1818C16.7327 19.1818 17.2189 19.6719 17.2192 20.2766L17.2212 22.2209V22.2219C17.2212 25.6743 19.7877 28.52 23.1909 28.841C23.2963 28.8512 23.4014 28.8587 23.5073 28.8635C24.1063 28.8912 24.5698 29.403 24.5425 30.007C24.5162 30.594 24.0354 31.052 23.4585 31.052C23.4417 31.052 23.4247 31.0519 23.4077 31.051C23.2665 31.0446 23.1259 31.0349 22.9868 31.0217C19.9944 30.7391 17.4894 28.9874 16.1352 26.507C14.7805 28.9888 12.2737 30.7402 9.2788 31.0217C9.14005 31.0348 9.00014 31.0448 8.85986 31.051C8.84289 31.0519 8.82585 31.052 8.80908 31.052C8.23239 31.0519 7.75159 30.594 7.72509 30.007C7.69783 29.4032 8.16139 28.8914 8.76025 28.8635C8.86663 28.8585 8.97258 28.8508 9.07763 28.841C12.4819 28.5212 15.0493 25.6757 15.0493 22.2219L15.0483 20.2775C15.0482 19.7107 15.4746 19.244 16.022 19.1877L16.1333 19.1818ZM0.703608 12.5422C1.26509 12.3298 1.89137 12.6155 2.10205 13.1818C2.13959 13.2818 2.17945 13.3807 2.22119 13.4777C3.57513 16.6444 7.05294 18.2277 10.3091 17.1604L12.1421 16.5578C12.7121 16.3708 13.3251 16.6849 13.5112 17.26C13.6969 17.8348 13.3852 18.4536 12.8149 18.6408L10.981 19.2424L10.979 19.2434C7.72417 20.3106 5.8335 23.6505 6.58154 27.0129C6.6048 27.1169 6.63144 27.2214 6.65966 27.3254C6.81808 27.9084 6.47746 28.5102 5.89892 28.6701C5.80311 28.6966 5.70667 28.7092 5.61181 28.7092C5.13475 28.7092 4.6974 28.3905 4.56494 27.9045C4.52778 27.7677 4.49387 27.6304 4.46337 27.4934C3.80446 24.5336 4.6826 21.5873 6.60595 19.5217C3.84564 18.99 1.41741 17.1313 0.226069 14.3449C0.171084 14.2164 0.119297 14.0851 0.0698185 13.9524C-0.14122 13.3864 0.142223 12.7549 0.703608 12.5422ZM30.1655 13.1799C30.3767 12.6141 31.0039 12.3284 31.5649 12.5422C32.1258 12.7555 32.4091 13.387 32.1977 13.9524C32.1484 14.0854 32.0956 14.2169 32.0405 14.3459C30.8489 17.1297 28.4205 18.987 25.6616 19.5188C27.5861 21.5851 28.4646 24.533 27.8042 27.4943C27.7737 27.6307 27.7397 27.7671 27.7026 27.9035C27.5703 28.3897 27.1326 28.7092 26.6558 28.7092C26.5606 28.7092 26.4637 28.6966 26.3677 28.6701C25.7892 28.5099 25.4494 27.9074 25.6079 27.3244C25.6363 27.2208 25.6618 27.1167 25.6851 27.0129C26.4353 23.649 24.5454 20.308 21.2886 19.2404L19.4536 18.6408C18.8833 18.4543 18.571 17.8369 18.7554 17.2619C18.9403 16.6869 19.5527 16.3708 20.1235 16.5578L21.9585 17.1574C25.2152 18.2254 28.6919 16.6422 30.0464 13.4777C30.0881 13.3801 30.1276 13.2802 30.1655 13.1799ZM43.4233 14.4807C45.5292 14.4807 46.7894 15.1886 47.8267 16.218L46.2632 18.0363C45.4017 17.2482 44.5244 16.765 43.4077 16.7649C41.5249 16.7649 40.1686 18.3419 40.1685 20.2727V20.3049C40.1685 22.2357 41.4927 23.8449 43.4077 23.8449C44.6839 23.8448 45.4658 23.3299 46.3433 22.5256L47.9067 24.1184C46.7581 25.3574 45.4815 26.129 43.3276 26.1291C40.0407 26.1291 37.5991 23.5711 37.5991 20.3371V20.3049C37.5992 17.1031 39.9929 14.4807 43.4233 14.4807ZM97.8765 21.0432C97.8765 22.8771 98.786 23.8272 100.286 23.8274C101.785 23.8274 102.696 22.91 102.696 21.1242V14.6721H105.153V21.0275C105.153 24.4383 103.254 26.1114 100.254 26.1115C97.2548 26.1115 95.4194 24.4221 95.4194 21.1076V14.6721H97.8765V21.0432ZM113.516 14.51C115.144 14.51 116.532 15.0255 117.665 15.9426L116.388 17.8088C115.399 17.1173 114.425 16.6984 113.484 16.6984C112.543 16.6986 112.048 17.1329 112.048 17.6799V17.7121C112.048 18.4521 112.527 18.6937 114.458 19.1926C116.723 19.7878 118 20.6085 118 22.5715V22.6037C118 24.8402 116.308 26.0949 113.899 26.0949C112.208 26.0949 110.501 25.4997 109.161 24.2932L110.612 22.5393C111.617 23.3759 112.67 23.9064 113.947 23.9065C114.952 23.9065 115.559 23.5045 115.559 22.8449V22.8127C115.559 22.1854 115.176 21.8636 113.309 21.3811C111.059 20.8016 109.607 20.1739 109.607 17.9377V17.9055C109.607 15.8622 111.234 14.5101 113.516 14.51ZM62.5015 25.9358H59.9321L58.9106 23.4104H54.188L53.1665 25.9358H50.6616L55.4487 14.593H57.7143L62.5015 25.9358ZM71.7007 19.4358L74.6372 14.6731H77.2856V25.9358H74.8442V18.5822L71.7007 23.3938H71.6372L68.5259 18.6311V25.9358H66.1167V14.6731H68.7651L71.7007 19.4358ZM87.227 14.6731C89.8917 14.6731 91.5034 16.2655 91.5034 18.5666V18.5988C91.5033 21.2054 89.4928 22.5568 86.9878 22.5568H85.1216V25.9358H82.6645V14.6731H87.227ZM55.0659 21.2219H58.0337L56.5493 17.5695L55.0659 21.2219ZM85.1216 20.3527H87.0679C88.2963 20.3527 89.0142 19.612 89.0142 18.6467V18.6145C89.014 17.5044 88.2485 16.9094 87.02 16.9094H85.1216V20.3527ZM13.479 0.239461C13.9471 -0.137651 14.6305 -0.0610976 15.0054 0.411336C15.3796 0.883621 15.3036 1.57276 14.8354 1.9504C14.7521 2.0175 14.6704 2.08609 14.5913 2.15645C12.0235 4.43319 11.6057 8.25716 13.6186 11.051L14.7524 12.6233C15.1052 13.1124 14.9982 13.7977 14.5132 14.1535C14.3203 14.2948 14.0968 14.3625 13.8755 14.3625C13.54 14.3625 13.2089 14.2065 12.9966 13.9123L11.8618 12.3391L11.8608 12.3381C9.84872 9.5457 6.11447 8.76489 3.17431 10.5217C3.08337 10.5757 2.99324 10.6328 2.90478 10.6916C2.40395 11.0242 1.73142 10.8847 1.40087 10.3801C1.07074 9.87523 1.20903 9.19664 1.70947 8.86348C1.82744 8.78508 1.94663 8.70978 2.06689 8.6379C4.65304 7.0926 7.70049 7.02379 10.2417 8.22774C9.89141 5.41686 10.8989 2.51458 13.1577 0.511922C13.2623 0.418933 13.3693 0.328034 13.479 0.239461ZM17.2612 0.411336C17.6358 -0.061235 18.3194 -0.137621 18.7876 0.239461C18.8974 0.328092 19.0052 0.419061 19.1099 0.511922C21.367 2.51486 22.3732 5.41694 22.0229 8.22677C24.5655 7.0219 27.6145 7.09047 30.2017 8.6379C30.3216 8.70961 30.4403 8.78524 30.5581 8.86348C31.0585 9.19664 31.1968 9.87506 30.8667 10.3801C30.5367 10.8848 29.8636 11.0241 29.3628 10.6916C29.2742 10.6326 29.1843 10.5757 29.0942 10.5217C26.153 8.76253 22.4168 9.54304 20.4038 12.3371L19.272 13.9104C19.0598 14.2054 18.7279 14.3624 18.3921 14.3625C18.1709 14.3625 17.9481 14.2944 17.7554 14.1535C17.27 13.7986 17.162 13.1143 17.5142 12.6252L18.647 11.05C20.659 8.25708 20.2413 4.43336 17.6753 2.15645C17.5964 2.08667 17.5154 2.01749 17.4321 1.9504C16.9636 1.57278 16.887 0.883671 17.2612 0.411336ZM82.5317 3.31368C83.5848 3.31368 84.2153 3.66707 84.7339 4.18184L83.9517 5.092C83.5208 4.69749 83.0824 4.45626 82.5239 4.45626C81.5826 4.45626 80.905 5.24405 80.9048 6.20919V6.22579C80.9048 7.1909 81.5665 7.99532 82.5239 7.99532C83.162 7.99532 83.553 7.73809 83.9917 7.33614L84.7739 8.13302C84.1997 8.75239 83.5606 9.1379 82.4839 9.1379C80.8403 9.1378 79.6196 7.85862 79.6196 6.24141V6.22579C79.6196 4.62492 80.8165 3.31378 82.5317 3.31368ZM41.0649 3.40938C41.703 3.4094 42.2056 3.58664 42.5249 3.90841C42.78 4.16603 42.9077 4.48017 42.9077 4.86641V4.88204C42.9077 5.51764 42.5724 5.87156 42.1733 6.09688C42.8197 6.34624 43.2192 6.72455 43.2192 7.48067V7.4963C43.2192 8.52622 42.3889 9.04122 41.1284 9.04122H38.4722V3.40938H41.0649ZM47.2466 9.04122H46.0181V3.40938H47.2466V9.04122ZM54.7476 4.35079L51.6763 7.95528H54.7476V9.04122H50.0962V8.09981L53.1685 4.4963H50.1919V3.40938H54.7476V4.35079ZM60.1675 3.41036C60.8776 3.41036 61.4284 3.61084 61.7954 3.98067C62.1063 4.29457 62.2739 4.73729 62.2739 5.26778V5.28438C62.2739 6.19337 61.7876 6.76477 61.0776 7.03048L62.4419 9.04122H61.0054L59.8091 7.23946H58.8442V9.04122H57.6147V3.41036H60.1675ZM69.3276 4.51192H66.3364V5.6545H68.9683V6.75704H66.3364V7.93868H69.3677V9.04122H65.1157V3.41036H69.3276V4.51192ZM77.6743 9.04122H76.3901L75.8794 7.77852H73.5181L73.0073 9.04122H71.7544L74.1479 3.36934H75.2817L77.6743 9.04122ZM88.6099 5.63888H90.8765V3.41036H92.105V9.04122H90.8765V6.78048H88.6099V9.04122H87.3813V3.41036H88.6099V5.63888ZM39.6685 7.95528H41.1284C41.6708 7.95528 41.9985 7.76222 41.9985 7.34395V7.32735C41.9984 6.94966 41.719 6.71614 41.0893 6.71602H39.6685V7.95528ZM73.9565 6.68477H75.4409L74.6987 4.85763L73.9565 6.68477ZM58.8442 6.14473H60.0884C60.6866 6.14473 61.0297 5.82342 61.0298 5.34884V5.33223C61.0296 4.80153 60.6621 4.52852 60.064 4.52852H58.8442V6.14473ZM39.6685 5.68673H40.8013C41.3435 5.68673 41.6867 5.50982 41.687 5.092V5.0754C41.687 4.70533 41.4001 4.49632 40.8813 4.4963H39.6685V5.68673Z"/>
+      </svg>
+    </span>
+    <span class="logo-divider"></span>
+    <span class="logo-sub2">Icon Library</span>
+  </div>
+  <div class="search-wrap">
+    <svg class="search-ic" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="text" class="search-input" id="search-input" placeholder="アイコンを検索...">
+  </div>
+  <div class="header-right">
+    <span class="count-badge" id="count-badge"></span>
+    <button class="btn btn-ghost btn-sm" id="import-btn">インポート</button>
+    <button class="btn btn-ghost btn-sm" id="export-btn">エクスポート</button>
+    <button class="btn btn-primary btn-sm" id="new-btn">
+      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      新規作成
+    </button>
+    <button class="btn-icon" id="theme-btn" title="テーマ切替">
+      <svg id="theme-ic" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- DESIGN RULES BANNER -->
+<!-- LAYOUT -->
+<div class="layout">
+  <div class="grid-area" id="grid-area">
+    <div class="grid-top">
+      <span class="grid-label" id="grid-label"></span>
+    </div>
+    <div class="icon-grid" id="icon-grid"></div>
+    <div class="empty-state hidden" id="empty-state">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <span id="empty-msg"></span>
+    </div>
+  </div>
+
+  <aside class="detail-panel hidden" id="detail-panel">
+    <div class="detail-preview-bg" id="detail-preview"></div>
+    <div class="detail-name" id="detail-name"></div>
+    <div class="tags" id="detail-tags"></div>
+    <div class="divider"></div>
+    <div class="sizes-row" id="detail-sizes"></div>
+    <div class="divider"></div>
+    <div class="copy-grid" id="copy-grid"></div>
+    <div class="detail-actions" id="detail-actions"></div>
+  </aside>
+</div>
+
+<!-- AI GENERATION MODAL -->
+<div class="overlay hidden" id="draw-overlay">
+  <div class="modal" id="draw-modal-inner">
+    <div class="modal-hd">
+      <span class="modal-title">新規アイコンを作成</span>
+      <button class="modal-close" id="draw-close-btn"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="ai-modal-body">
+
+      <!-- STEP 1 -->
+      <div class="ai-step">
+        <div class="ai-step-num">1</div>
+        <div class="ai-step-content">
+          <div class="ai-prompt-label">作りたいアイコンを日本語で入力<span style="font-weight:400;color:var(--text-muted)">（または画像を添付）</span></div>
+          <div style="display:flex;gap:8px;align-items:flex-start">
+            <textarea class="ai-prompt-textarea" id="ai-prompt" placeholder="例：スマートフォン、家、ノートとペン、カレンダー" style="height:60px;flex:1"></textarea>
+            <button class="btn btn-primary btn-sm" id="ai-generate-btn" style="white-space:nowrap;flex-shrink:0">プロンプトを生成</button>
+          </div>
+          <!-- 画像添付エリア -->
+          <div class="img-drop" id="ai-img-drop">
+            <div class="img-drop-empty" id="ai-img-empty">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span>名前がわからないアイコンは画像から作成<br>クリックで選択・ドラッグ&ドロップ・貼り付け（Ctrl/⌘+V）に対応</span>
+            </div>
+            <div class="img-drop-preview" id="ai-img-preview" style="display:none">
+              <img id="ai-img-thumb" alt="添付画像">
+              <button class="btn btn-ghost btn-sm" id="ai-img-clear" type="button">画像を外す</button>
+            </div>
+            <input type="file" id="ai-img-input" accept="image/*" style="display:none">
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="ai-step" id="ai-step2" style="display:none">
+        <div class="ai-step-num">2</div>
+        <div class="ai-step-content">
+          <div class="ai-prompt-label">このプロンプトをコピーして <a href="https://claude.ai" target="_blank" rel="noopener" style="color:var(--accent)">claude.ai</a> に貼り付ける</div>
+          <div style="position:relative">
+            <textarea class="ai-svg-editor" id="ai-claude-prompt" readonly style="height:130px;font-size:11px;background:var(--bg-sub);color:var(--text-muted)"></textarea>
+            <button class="btn btn-ghost btn-sm" id="ai-copy-prompt-btn" style="position:absolute;top:7px;right:7px">コピー</button>
+          </div>
+          <div class="ai-hint" id="ai-step2-hint">↑ コピー → <a href="https://claude.ai" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">claude.ai を開く</a> → チャットに貼り付けて送信</div>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="ai-step" id="ai-step3" style="display:none">
+        <div class="ai-step-num">3</div>
+        <div class="ai-step-content">
+          <div class="ai-prompt-label">Claudeの返答からSVGコードをここに貼り付ける</div>
+          <textarea class="ai-svg-editor" id="ai-svg-code" spellcheck="false" placeholder="&lt;path d=&quot;...&quot;/&gt; などのSVGコードを貼り付け" style="height:90px"></textarea>
+          <div class="ai-preview-area" id="ai-preview-area" style="display:none;margin-top:8px">
+            <div class="ai-preview-large" id="ai-preview-large"></div>
+            <div class="ai-sizes-row" id="ai-sizes-row"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-ft">
+      <input type="text" class="name-input" id="icon-name-input" placeholder="アイコン名（例: smartphone）">
+      <input type="text" class="name-input" id="icon-tags-input" placeholder="タグ（カンマ区切り）" style="max-width:180px">
+      <button class="btn btn-primary" id="save-icon-btn">保存</button>
+      <button class="btn btn-ghost" id="draw-cancel-btn">キャンセル</button>
+    </div>
+  </div>
+</div>
+
+<!-- EDIT MODAL -->
+<div class="overlay hidden" id="edit-overlay">
+  <div class="modal" id="edit-modal-inner">
+    <div class="modal-hd">
+      <span class="modal-title">アイコンを編集 — <span id="edit-icon-name-title"></span></span>
+      <button class="modal-close" id="edit-close-btn"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="edit-body">
+      <div class="editor-area">
+        <!-- AIで調整 -->
+        <div class="ai-refine">
+          <div class="rule-head">🪄 AIで調整（日本語で指示）</div>
+          <div style="display:flex;gap:8px;align-items:flex-start">
+            <textarea class="rule-ctrl" id="refine-input" placeholder="例：真ん中の2本の経線をもっと垂直に／上下を少し詰めて／線をシンプルに" style="resize:none;height:52px;flex:1"></textarea>
+            <button class="btn btn-primary btn-sm" id="refine-gen-btn" style="white-space:nowrap;flex-shrink:0">調整プロンプトを生成</button>
+          </div>
+          <div id="refine-prompt-wrap" style="display:none;position:relative;margin-top:6px">
+            <textarea class="ai-svg-editor" id="refine-prompt" readonly style="height:118px;font-size:11px;background:var(--bg-sub);color:var(--text-muted)"></textarea>
+            <button class="btn btn-ghost btn-sm" id="refine-copy-btn" style="position:absolute;top:7px;right:7px">コピー</button>
+          </div>
+          <div class="ai-hint" id="refine-hint" style="display:none;margin-top:4px">↑ コピー → <a href="https://claude.ai" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">claude.ai</a> に貼り付け → 返ってきたSVGを下の「SVGコード」欄に貼り替えて保存</div>
+        </div>
+        <div class="divider"></div>
+        <div class="rule-head">SVGコード（内部パス・直接編集）</div>
+        <textarea class="svg-editor" id="svg-editor" spellcheck="false" placeholder="&lt;path d=&quot;...&quot;/&gt;&#10;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;4&quot;/&gt;"></textarea>
+        <div class="canvas-toolbar">
+          <button class="btn btn-ghost btn-sm" id="edit-snap-grid">0.5pxグリッドスナップ</button>
+          <button class="btn btn-ghost btn-sm" id="edit-snap-axis">H/V軸スナップ</button>
+          <button class="btn btn-ghost btn-sm" id="edit-normalize-rects">矩形の角を丸める</button>
+          <span class="canvas-hint">編集後、自動でプレビューが更新されます</span>
+        </div>
+        <div class="rule-section">
+          <div class="rule-head" style="margin-top:4px">アイコン名</div>
+          <input type="text" class="rule-ctrl" id="edit-name-input" placeholder="icon-name">
+        </div>
+        <div class="rule-section">
+          <div class="rule-head">タグ</div>
+          <input type="text" class="rule-ctrl" id="edit-tags-input" placeholder="tag1, tag2">
+        </div>
+      </div>
+      <div class="edit-preview-col">
+        <div class="rule-head">ライブプレビュー</div>
+        <div class="edit-preview-grid">
+          <div class="edit-prev-item">
+            <div class="edit-prev-bg" style="width:64px;height:64px"><div id="eprev-64"></div></div>
+            <span class="lbl">64px</span>
+          </div>
+          <div class="edit-prev-item">
+            <div class="edit-prev-bg" style="width:48px;height:48px"><div id="eprev-48"></div></div>
+            <span class="lbl">48px</span>
+          </div>
+          <div class="edit-prev-item">
+            <div class="edit-prev-bg" style="width:32px;height:32px"><div id="eprev-32"></div></div>
+            <span class="lbl">32px</span>
+          </div>
+          <div class="edit-prev-item">
+            <div class="edit-prev-bg" style="width:24px;height:24px"><div id="eprev-24"></div></div>
+            <span class="lbl">24px</span>
+          </div>
+          <div class="edit-prev-item">
+            <div class="edit-prev-bg" style="width:16px;height:16px"><div id="eprev-16"></div></div>
+            <span class="lbl">16px</span>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="snap-actions">
+          <div class="rule-head">デザインルール確認</div>
+          <div style="font-size:11px;color:var(--text-muted);line-height:1.7">
+            ✓ stroke-width: <strong>1.5</strong><br>
+            ✓ linecap: <strong>round</strong><br>
+            ✓ linejoin: <strong>round</strong><br>
+            ✓ viewBox: <strong>0 0 24 24</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-ft" style="justify-content:flex-end">
+      <button class="btn btn-primary" id="edit-save-btn">保存</button>
+      <button class="btn btn-ghost" id="edit-cancel-btn">キャンセル</button>
+    </div>
+  </div>
+</div>
+
+<input type="file" id="file-input" accept=".svg,.json" multiple style="display:none">
+<div class="toast" id="toast"></div>
+
+<script>
+// ════════════════════════════════════════════════════
+//  CAMPUS ICON DATA (82 icons)
+// ════════════════════════════════════════════════════
+const CAMPUS_ICONS = [
+  // ── Row 1: Navigation
+  {id:'check',name:'check',svg:`<polyline points="20 6 9 17 4 12"/>`,tags:['tick','done','success','confirm']},
+  {id:'circle',name:'circle',svg:`<circle cx="12" cy="12" r="9"/>`,tags:['outline','shape','empty']},
+  {id:'close',name:'close',svg:`<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>`,tags:['x','cancel','remove','delete']},
+  {id:'plus',name:'plus',svg:`<line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>`,tags:['add','new','create']},
+  {id:'chevron-right',name:'chevron-right',svg:`<polyline points="9 18 15 12 9 6"/>`,tags:['arrow','next','forward']},
+  {id:'chevron-left',name:'chevron-left',svg:`<polyline points="15 18 9 12 15 6"/>`,tags:['arrow','back','previous']},
+  {id:'chevron-up',name:'chevron-up',svg:`<polyline points="18 15 12 9 6 15"/>`,tags:['arrow','up','collapse']},
+  {id:'chevron-down',name:'chevron-down',svg:`<polyline points="6 9 12 15 18 9"/>`,tags:['arrow','down','expand']},
+  {id:'arrow-down',name:'arrow-down',svg:`<line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>`,tags:['down','direction','scroll']},
+  {id:'caret-down',name:'caret-down',svg:`<path d="M5 9l7 7 7-7z" fill="currentColor" stroke-linejoin="round"/>`,tags:['sort','filled','select','triangle']},
+  {id:'caret-up',name:'caret-up',svg:`<path d="M5 15l7-7 7 7z" fill="currentColor" stroke-linejoin="round"/>`,tags:['sort','filled','select','triangle']},
+  {id:'alert-triangle',name:'alert-triangle',svg:`<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>`,tags:['warning','caution','error','alert']},
+  {id:'circle-plus',name:'circle-plus',svg:`<circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/>`,tags:['add','new','create']},
+  {id:'circle-info',name:'circle-info',svg:`<circle cx="12" cy="12" r="9"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>`,tags:['info','information','help']},
+  {id:'bookmark',name:'bookmark',svg:`<path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>`,tags:['save','favorite','mark']},
+  {id:'bookmark-filled',name:'bookmark-filled',svg:`<path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" fill="currentColor"/>`,tags:['save','favorite','marked','filled']},
+  {id:'mail',name:'mail',svg:`<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>`,tags:['email','message','inbox','envelope']},
+  {id:'user',name:'user',svg:`<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>`,tags:['person','profile','account','member']},
+
+  // ── Row 2: Devices & Files
+  {id:'mobile',name:'mobile',svg:`<rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>`,tags:['phone','smartphone','device']},
+  {id:'briefcase',name:'briefcase',svg:`<rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>`,tags:['work','job','career','bag']},
+  {id:'paperclip',name:'paperclip',svg:`<path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>`,tags:['attachment','file','clip']},
+  {id:'image',name:'image',svg:`<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>`,tags:['photo','picture','gallery','media']},
+  {id:'pencil',name:'pencil',svg:`<path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>`,tags:['edit','write','modify','pen']},
+  {id:'trash',name:'trash',svg:`<polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/>`,tags:['delete','remove','bin','discard']},
+  {id:'download',name:'download',svg:`<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>`,tags:['save','export','get']},
+  {id:'calendar',name:'calendar',svg:`<rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>`,tags:['date','schedule','event','time']},
+  {id:'file',name:'file',svg:`<path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/>`,tags:['document','page','text']},
+  {id:'star',name:'star',svg:`<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>`,tags:['favorite','rating','outline','wish']},
+  {id:'star-filled',name:'star-filled',svg:`<polygon points="12 2.45 14.95 8.43 21.55 9.39 16.78 14.04 17.90 20.61 12 17.51 6.10 20.61 7.23 14.04 2.45 9.39 9.05 8.43 12 2.45" fill="currentColor" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>`,tags:['favorite','rating','filled','rated']},
+  {id:'search',name:'search',svg:`<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>`,tags:['find','magnify','look']},
+  {id:'message',name:'message',svg:`<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>`,tags:['chat','bubble','comment','talk']},
+  {id:'video',name:'video',svg:`<rect x="1" y="5" width="15" height="14" rx="2" ry="2"/><path d="M23 8.2L23 15.8Q23 17 22 16.3L17.6 13.2Q16 12 17.6 10.8L22 7.7Q23 7 23 8.2Z"/>`,tags:['camera','record','film','movie']},
+  {id:'loader',name:'loader',svg:`<line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/>`,tags:['loading','spinner','refresh','wait']},
+  {id:'external-link',name:'external-link',svg:`<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>`,tags:['open','newtab','share','link']},
+  {id:'users',name:'users',svg:`<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>`,tags:['group','people','team','members']},
+  {id:'video-solid',name:'video-solid',svg:`<rect x="1" y="5" width="15" height="14" rx="2" ry="2" fill="currentColor" stroke="none"/><path d="M23 8.2L23 15.8Q23 17 22 16.3L17.6 13.2Q16 12 17.6 10.8L22 7.7Q23 7 23 8.2Z" fill="currentColor" stroke="none"/>`,tags:['camera','record','filled','solid']},
+  {id:'menu',name:'menu',svg:`<line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>`,tags:['hamburger','navigation','lines','list']},
+
+  // ── Row 3: Status & Tools
+  {id:'check-circle',name:'check-circle',svg:`<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>`,tags:['done','success','verify','complete']},
+  {id:'map-pin',name:'map-pin',svg:`<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>`,tags:['location','place','marker','pin','address']},
+  {id:'zoom-in',name:'zoom-in',svg:`<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>`,tags:['search','magnify','enlarge','zoom']},
+  {id:'bell',name:'bell',svg:`<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>`,tags:['notification','alert','ring','alarm']},
+  {id:'graduation-cap',name:'graduation-cap',svg:`<path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>`,tags:['education','school','study','campus','graduate']},
+  {id:'check-small',name:'check-small',svg:`<polyline points="20 6 9 17 4 12"/>`,tags:['tick','done','confirm','small']},
+  {id:'more-horizontal',name:'more-horizontal',svg:`<circle cx="5" cy="12" r="2" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/><circle cx="19" cy="12" r="2" fill="currentColor" stroke="none"/>`,tags:['dots','options','more','ellipsis']},
+  {id:'heart',name:'heart',svg:`<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>`,tags:['like','love','favorite','wish']},
+  {id:'sliders',name:'sliders',svg:`<line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/>`,tags:['filter','settings','adjust','controls']},
+  {id:'arrow-down-simple',name:'arrow-down-simple',svg:`<line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>`,tags:['down','direction','sort']},
+  {id:'save',name:'save',svg:`<path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/>`,tags:['floppy','disk','storage','save']},
+  {id:'list',name:'list',svg:`<line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>`,tags:['lines','items','menu','bullet']},
+  {id:'copy',name:'copy',svg:`<rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>`,tags:['duplicate','clipboard','copy']},
+  {id:'chevron-right-circle',name:'chevron-right-circle',svg:`<circle cx="12" cy="12" r="10"/><polyline points="10 8 14 12 10 16"/>`,tags:['next','navigate','forward','button']},
+  {id:'grid',name:'grid',svg:`<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>`,tags:['layout','view','tiles','gallery']},
+  {id:'grid-plus',name:'grid-plus',svg:`<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><line x1="17.5" y1="14" x2="17.5" y2="21"/><line x1="14" y1="17.5" x2="21" y2="17.5"/>`,tags:['layout','add','new','create']},
+  {id:'clipboard-check',name:'clipboard-check',svg:`<path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="2"/><path d="M9 14l2 2 4-4"/>`,tags:['task','done','todo','checklist']},
+  {id:'file-download',name:'file-download',svg:`<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="13" x2="12" y2="18"/><polyline points="9 16 12 19 15 16"/>`,tags:['document','export','download','file']},
+
+  // ── Row 4: Buildings & Controls
+  {id:'building-2',name:'building-2',svg:`<path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18"/><path d="M2 22h20"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/>`,tags:['skyscraper','office','building','corporate']},
+  {id:'circle-x',name:'circle-x',svg:`<circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>`,tags:['error','cancel','no','close']},
+  {id:'play',name:'play',svg:`<polygon points="5 3 19 12 5 21 5 3"/>`,tags:['start','media','begin','video']},
+  {id:'clipboard',name:'clipboard',svg:`<path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="2"/>`,tags:['paste','copy','document','board']},
+  {id:'upload',name:'upload',svg:`<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>`,tags:['share','send','export','up']},
+  {id:'clock',name:'clock',svg:`<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>`,tags:['time','history','schedule','clock']},
+  {id:'filter',name:'filter',svg:`<polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>`,tags:['sort','funnel','narrow','search']},
+  {id:'folder-open',name:'folder-open',svg:`<path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/><line x1="2" y1="12" x2="22" y2="12"/>`,tags:['directory','files','open','browse']},
+  {id:'settings',name:'settings',svg:`<path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/>`,tags:['gear','config','preferences','option']},
+  {id:'folder-plus',name:'folder-plus',svg:`<path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/>`,tags:['add','new','directory','create']},
+  {id:'file-edit',name:'file-edit',svg:`<path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>`,tags:['edit','modify','write','document']},
+  {id:'refresh',name:'refresh',svg:`<path d="M8.37 4.87A8 8 0 0 1 17.66 17.66"/><polyline points="20.59 17.03 17.66 17.66 18.28 14.72"/><path d="M15.63 19.13A8 8 0 0 1 6.34 6.34"/><polyline points="3.41 6.97 6.34 6.34 5.72 9.28"/>`,tags:['reload','update','sync','rotate']},
+  {id:'replay-forward',name:'replay-forward',svg:`<path d="M21 2v6h-6"/><path d="M21 13a9 9 0 1 1-3-7.7L21 8"/><text x="12" y="15" font-size="6.5" font-family="system-ui,sans-serif" font-weight="700" fill="currentColor" stroke="none" text-anchor="middle">10</text>`,tags:['replay','forward','10','media','skip']},
+  {id:'replay-back',name:'replay-back',svg:`<path d="M3 2v6h6"/><path d="M3 13a9 9 0 1 0 3-7.7L3 8"/><text x="12" y="15" font-size="6.5" font-family="system-ui,sans-serif" font-weight="700" fill="currentColor" stroke="none" text-anchor="middle">10</text>`,tags:['replay','back','10','media','rewind']},
+  {id:'play-filled',name:'play-filled',svg:`<path d="M5 6 Q5 3 7.5 4.5 L17 11 Q19 12 17 13 L7.5 19.5 Q5 21 5 18 Z" fill="currentColor" stroke="none"/>`,tags:['start','media','filled','play']},
+  {id:'pause',name:'pause',svg:`<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>`,tags:['media','stop','wait','hold']},
+  {id:'volume-low',name:'volume-low',svg:`<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>`,tags:['audio','sound','speaker','quiet']},
+
+  // ── Row 5: Media & Advanced
+  {id:'volume-high',name:'volume-high',svg:`<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>`,tags:['audio','loud','sound','speaker']},
+  {id:'volume-x',name:'volume-x',svg:`<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>`,tags:['mute','silent','no-audio','off']},
+  {id:'repeat',name:'repeat',svg:`<polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>`,tags:['loop','replay','repeat','cycle']},
+  {id:'archive',name:'archive',svg:`<polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5" rx="1"/><line x1="10" y1="12" x2="14" y2="12"/>`,tags:['box','store','hide','archive']},
+  {id:'chevrons-right',name:'chevrons-right',svg:`<polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/>`,tags:['fast','forward','skip','double']},
+  {id:'globe',name:'globe',svg:`<circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/>`,tags:['world','internet','web','language','network','lucide']},
+];
+
+// ════════════════════════════════════════════════════
+//  APP STATE
+// ════════════════════════════════════════════════════
+let state = { icons: [], search: '', selectedId: null, dark: false };
+
+const DEFAULT_IDS = new Set(CAMPUS_ICONS.map(ic => ic.id));
+
+function loadState() {
+  // デフォルトアイコンは常にコード側（最新）を正とし、ユーザー作成アイコンのみ保存分から引き継ぐ
+  const freshDefaults = CAMPUS_ICONS.map(ic => ({...ic, isDefault: true, createdAt: Date.now()}));
+  try {
+    const saved = localStorage.getItem('campus-icons-v2');
+    if (saved) {
+      const stored = JSON.parse(saved);
+      const custom = stored.filter(ic => !DEFAULT_IDS.has(ic.id)); // 自作アイコンだけ残す
+      state.icons = [...freshDefaults, ...custom];
+    } else {
+      state.icons = freshDefaults;
+    }
+    const t = localStorage.getItem('campus-theme');
+    state.dark = t === 'dark';
+  } catch(e) {
+    state.icons = freshDefaults;
+  }
+}
+function saveIcons() { localStorage.setItem('campus-icons-v2', JSON.stringify(state.icons)); }
+
+// ════════════════════════════════════════════════════
+//  SVG HELPERS
+// ════════════════════════════════════════════════════
+function makeSVG(inner, size, sw, linecap, linejoin, color) {
+  sw = sw ?? 1.5; linecap = linecap || 'round'; linejoin = linejoin || 'round'; color = color || 'currentColor';
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="${sw}" stroke-linecap="${linecap}" stroke-linejoin="${linejoin}">${inner}</svg>`;
+}
+
+// ════════════════════════════════════════════════════
+//  AI ICON GENERATION (Claude API)
+// ════════════════════════════════════════════════════
+function iconColor() { return state.dark ? '#ffffff' : '#174891'; }
+
+const RULES_BLOCK = `【デザインルール】
+- viewBox: 0 0 24 24
+- stroke-width: 1.5（固定）
+- stroke-linecap: round
+- stroke-linejoin: round
+- fill: none（線アイコン）または fill="currentColor"（塗りつぶし図形）
+- rect要素は必ず rx="2" を付ける
+- スタイル：フラット、ミニマル、線画アイコン。3D・影・グラデーションなし
+- 座標範囲：2〜22に収める`;
+
+const OUTPUT_BLOCK = `【出力形式】
+1行目：このアイコンの英語名を kebab-case で出力（例: world-network、smartphone）
+2行目以降：<svg>タグは不要、内部のパス要素のみ
+説明文・コードブロック記号（\`\`\`）は不要です。`;
+
+const AI_PROMPT_TEMPLATE = (iconDesc) => `以下のデザインルールに従ってSVGアイコンを作成してください。
+
+${RULES_BLOCK}
+
+${OUTPUT_BLOCK}
+
+【作成するアイコン】
+${iconDesc}`;
+
+const AI_PROMPT_TEMPLATE_IMAGE = (iconDesc) => `添付した画像を見て、それを以下のデザインルールに従ったSVGアイコン（フラットな線画アイコン）に変換してください。写真的なディテールは削ぎ落とし、アイコンとして認識できる最小限の形に単純化してください。
+
+${RULES_BLOCK}
+
+${OUTPUT_BLOCK}
+${iconDesc ? `\n【補足（任意）】\n${iconDesc}` : ''}`;
+
+const AI_REFINE_TEMPLATE = (currentSvg, instr) => `以下のSVGアイコンを、指示に従って調整してください。元のデザインの雰囲気はできるだけ保ったまま、指示された部分だけを変更します。
+
+【現在のSVG（内部パス要素）】
+${currentSvg}
+
+【調整指示】
+${instr}
+
+${RULES_BLOCK}
+
+【出力形式】
+調整後の内部パス要素のみを出力してください。<svg>タグ・説明文・コードブロック記号（\`\`\`）・アイコン名は不要です。`;
+
+// 添付画像（dataURL）。null なら未添付。
+let attachedImage = null;
+
+function generateIcon() {
+  const desc = document.getElementById('ai-prompt').value.trim();
+  if (!desc && !attachedImage) { toast('アイコンの説明を入力するか画像を添付してください'); return; }
+
+  const prompt = attachedImage ? AI_PROMPT_TEMPLATE_IMAGE(desc) : AI_PROMPT_TEMPLATE(desc);
+  document.getElementById('ai-claude-prompt').value = prompt;
+  // 画像モードのときは claude.ai に画像も添付するよう案内を切り替え
+  document.getElementById('ai-step2-hint').innerHTML = attachedImage
+    ? '↑ コピー → <a href="https://claude.ai" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">claude.ai を開く</a> → <strong>添付した画像も一緒にアップロード</strong>し、プロンプトを貼り付けて送信'
+    : '↑ コピー → <a href="https://claude.ai" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">claude.ai を開く</a> → チャットに貼り付けて送信';
+  document.getElementById('ai-step2').style.display = 'flex';
+  document.getElementById('ai-step3').style.display = 'flex';
+}
+
+// 貼り付けられたClaude応答を {name, svg} に分解する
+function parsePastedCode(raw) {
+  const text = (raw || '').replace(/```[a-z]*\n?/gi, '').trim();
+  const lines = text.split('\n');
+  // 先頭の空行を飛ばす
+  let i = 0;
+  while (i < lines.length && !lines[i].trim()) i++;
+  const first = (lines[i] || '').trim();
+  // 1行目が「<」を含まず、kebab-caseらしき名前ならアイコン名として扱う
+  if (first && !first.includes('<') && /^[A-Za-z][A-Za-z0-9 _-]*$/.test(first)) {
+    return { name: first, svg: lines.slice(i + 1).join('\n').trim() };
+  }
+  return { name: '', svg: text };
+}
+
+// 画像添付処理
+function setAttachedImage(dataURL) {
+  attachedImage = dataURL;
+  document.getElementById('ai-img-thumb').src = dataURL;
+  document.getElementById('ai-img-empty').style.display = 'none';
+  document.getElementById('ai-img-preview').style.display = 'flex';
+}
+function clearAttachedImage() {
+  attachedImage = null;
+  document.getElementById('ai-img-input').value = '';
+  document.getElementById('ai-img-empty').style.display = 'flex';
+  document.getElementById('ai-img-preview').style.display = 'none';
+}
+function readImageFile(file) {
+  if (!file || !file.type.startsWith('image/')) { toast('画像ファイルを選択してください'); return; }
+  const r = new FileReader();
+  r.onload = e => setAttachedImage(e.target.result);
+  r.readAsDataURL(file);
+}
+
+function updateAIPreview(raw) {
+  const { name, svg } = parsePastedCode(raw);
+  // 1行目に名前が含まれていれば名前欄へ自動入力（ユーザーが手入力済みなら上書きしない）
+  const nameInput = document.getElementById('icon-name-input');
+  if (name && nameInput && !nameInput.dataset.touched) {
+    nameInput.value = name.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'');
+  }
+  if (!svg.trim()) {
+    document.getElementById('ai-preview-area').style.display = 'none';
+    return;
+  }
+  const col = iconColor();
+  const large = document.getElementById('ai-preview-large');
+  if (large) large.innerHTML = makeSVG(svg, 72, 1.5, 'round', 'round', col);
+  const sizes = document.getElementById('ai-sizes-row');
+  if (sizes) sizes.innerHTML = [16, 24, 32, 48].map(sz =>
+    `<div class="size-item">${makeSVG(svg,sz,1.5,'round','round',col)}<span class="lbl">${sz}</span></div>`
+  ).join('');
+  document.getElementById('ai-preview-area').style.display = 'flex';
+}
+
+// ════════════════════════════════════════════════════
+//  RENDER
+// ════════════════════════════════════════════════════
+function filtered() {
+  const q = state.search.toLowerCase().trim();
+  return q ? state.icons.filter(ic => ic.name.toLowerCase().includes(q) || (ic.tags||[]).some(t=>t.toLowerCase().includes(q))) : state.icons;
+}
+
+function renderGrid() {
+  const icons = filtered();
+  const grid = document.getElementById('icon-grid');
+  document.getElementById('grid-label').textContent = `${icons.length} アイコン`;
+  document.getElementById('count-badge').textContent = `${state.icons.length} 件`;
+  const empty = document.getElementById('empty-state');
+  if (!icons.length) {
+    grid.innerHTML = '';
+    empty.classList.remove('hidden');
+    document.getElementById('empty-msg').textContent = state.search ? `「${state.search}」は見つかりません` : 'アイコンがありません';
+    return;
+  }
+  empty.classList.add('hidden');
+  grid.innerHTML = icons.map(ic => {
+    const sel = ic.id === state.selectedId ? ' selected' : '';
+    return `<div class="icon-card${sel}" data-id="${ic.id}" title="${ic.name}">
+      ${makeSVG(ic.svg, 24, 1.5, 'round', 'round', 'currentColor')}
+      <span class="icon-card-name">${ic.name}</span>
+    </div>`;
+  }).join('');
+  grid.querySelectorAll('.icon-card').forEach(c => c.addEventListener('click', () => selectIcon(c.dataset.id)));
+}
+
+function renderDetail() {
+  const panel = document.getElementById('detail-panel');
+  if (!state.selectedId) { panel.classList.add('hidden'); return; }
+  const ic = state.icons.find(x => x.id === state.selectedId);
+  if (!ic) { panel.classList.add('hidden'); return; }
+  panel.classList.remove('hidden');
+
+  document.getElementById('detail-preview').innerHTML = makeSVG(ic.svg, '100%', 1.5, 'round', 'round', 'currentColor');
+  document.getElementById('detail-name').textContent = ic.name;
+  document.getElementById('detail-tags').innerHTML = (ic.tags||[]).map(t=>`<span class="tag">${t}</span>`).join('');
+  document.getElementById('detail-sizes').innerHTML = [16,24,32,48].map(sz =>
+    `<div class="size-item">${makeSVG(ic.svg,sz,1.5,'round','round','currentColor')}<span class="lbl">${sz}</span></div>`).join('');
+
+  document.getElementById('copy-grid').innerHTML = `
+    <div class="copy-row" data-action="dl16" data-id="${ic.id}">
+      <div class="copy-row-left"><div class="title">SVGダウンロード（16px）</div><div class="sub">width/height=16 のSVG</div></div>
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    </div>`;
+  document.getElementById('copy-grid').querySelectorAll('.copy-row').forEach(r =>
+    r.addEventListener('click', () => copyAction(r.dataset.action, r.dataset.id)));
+
+  const delBtn = ic.isDefault
+    ? '' // デフォルトアイコンは削除不可
+    : `<button class="btn btn-ghost btn-sm detail-delete" id="del-ic-btn">削除</button>`;
+  document.getElementById('detail-actions').innerHTML =
+    `<button class="btn btn-ghost btn-sm" id="edit-ic-btn">✏️ 編集</button>${delBtn}`;
+  document.getElementById('edit-ic-btn').addEventListener('click', () => openEditModal(ic.id));
+  if (!ic.isDefault) {
+    document.getElementById('del-ic-btn').addEventListener('click', () => deleteIcon(ic.id));
+  }
+}
+
+function selectIcon(id) {
+  state.selectedId = state.selectedId === id ? null : id;
+  renderGrid(); renderDetail();
+}
+
+// ════════════════════════════════════════════════════
+//  COPY / DOWNLOAD
+// ════════════════════════════════════════════════════
+function copyAction(action, id) {
+  const ic = state.icons.find(x => x.id === id);
+  if (!ic) return;
+  if (action === 'svg') {
+    copyText(`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">\n  ${ic.svg}\n</svg>`);
+    toast('SVGをコピーしました');
+  } else if (action === 'path') {
+    copyText(ic.svg); toast('パスをコピーしました');
+  } else if (action === 'dl16' || action === 'dl24') {
+    const sz = action === 'dl16' ? 16 : 24;
+    const BRAND = '#00478F';
+    // currentColor → ブランドカラーに置換（fill/stroke 両対応）
+    const colored = ic.svg.replace(/currentColor/g, BRAND);
+    const content = `<svg xmlns="http://www.w3.org/2000/svg" width="${sz}" height="${sz}" viewBox="0 0 24 24" fill="none" stroke="${BRAND}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">\n  ${colored}\n</svg>`;
+    const blob = new Blob([content], {type:'image/svg+xml'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = `${ic.name}-${sz}px.svg`; a.click();
+    URL.revokeObjectURL(a.href); toast(`${ic.name}-${sz}px.svg をダウンロード`);
+  }
+}
+function copyText(t) {
+  navigator.clipboard.writeText(t).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value=t; ta.style.cssText='position:fixed;opacity:0';
+    document.body.appendChild(ta); ta.select(); document.execCommand('copy');
+    document.body.removeChild(ta);
+  });
+}
+function deleteIcon(id) {
+  const ic = state.icons.find(x => x.id === id);
+  if (!ic || ic.isDefault) { toast('デフォルトアイコンは削除できません'); return; }
+  if (!confirm(`「${ic.name}」を削除しますか？`)) return;
+  state.icons = state.icons.filter(x => x.id !== id);
+  if (state.selectedId === id) state.selectedId = null;
+  saveIcons(); renderGrid(); renderDetail(); toast(`「${ic.name}」を削除しました`);
+}
+
+// ════════════════════════════════════════════════════
+//  DRAW (AI GENERATION) MODAL
+// ════════════════════════════════════════════════════
+function openDrawModal() {
+  document.getElementById('draw-overlay').classList.remove('hidden');
+  const nameInput = document.getElementById('icon-name-input');
+  nameInput.value = '';
+  delete nameInput.dataset.touched;
+  document.getElementById('icon-tags-input').value = '';
+  document.getElementById('ai-prompt').value = '';
+  document.getElementById('ai-claude-prompt').value = '';
+  document.getElementById('ai-svg-code').value = '';
+  document.getElementById('ai-preview-area').style.display = 'none';
+  document.getElementById('ai-step2').style.display = 'none';
+  document.getElementById('ai-step3').style.display = 'none';
+  clearAttachedImage();
+}
+function closeDrawModal() { document.getElementById('draw-overlay').classList.add('hidden'); }
+
+function saveNewIcon() {
+  let name = document.getElementById('icon-name-input').value.trim();
+  const parsed = parsePastedCode(document.getElementById('ai-svg-code').value);
+  // 名前未入力なら貼り付け内容の1行目から補完
+  if (!name) name = parsed.name;
+  if (!name) { toast('アイコン名を入力してください'); return; }
+  const svg = parsed.svg.trim();
+  if (!svg) { toast('先にアイコンを生成してください'); return; }
+  name = name.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'');
+  let id = name, n = 1;
+  while (state.icons.find(x => x.id === id)) id = `${name}-${n++}`;
+  const tags = document.getElementById('icon-tags-input').value.split(',').map(t=>t.trim()).filter(Boolean);
+  state.icons.push({id, name, svg, tags, isDefault: false, createdAt: Date.now()});
+  saveIcons(); closeDrawModal(); renderGrid(); selectIcon(id);
+  toast(`「${name}」を追加しました`);
+}
+
+// ════════════════════════════════════════════════════
+//  EDIT MODAL
+// ════════════════════════════════════════════════════
+let editingId = null;
+
+function openEditModal(id) {
+  const ic = state.icons.find(x => x.id === id);
+  if (!ic) return;
+  editingId = id;
+  document.getElementById('edit-icon-name-title').textContent = ic.name;
+  document.getElementById('edit-name-input').value = ic.name;
+  document.getElementById('edit-tags-input').value = (ic.tags||[]).join(', ');
+  document.getElementById('svg-editor').value = ic.svg;
+  // AI調整欄をリセット
+  document.getElementById('refine-input').value = '';
+  document.getElementById('refine-prompt').value = '';
+  document.getElementById('refine-prompt-wrap').style.display = 'none';
+  document.getElementById('refine-hint').style.display = 'none';
+  document.getElementById('edit-overlay').classList.remove('hidden');
+  updateEditPreview();
+}
+
+function generateRefinePrompt() {
+  const instr = document.getElementById('refine-input').value.trim();
+  if (!instr) { toast('調整したい内容を入力してください'); return; }
+  const current = document.getElementById('svg-editor').value.trim();
+  if (!current) { toast('調整するSVGがありません'); return; }
+  document.getElementById('refine-prompt').value = AI_REFINE_TEMPLATE(current, instr);
+  document.getElementById('refine-prompt-wrap').style.display = 'block';
+  document.getElementById('refine-hint').style.display = 'block';
+}
+function closeEditModal() { document.getElementById('edit-overlay').classList.add('hidden'); editingId = null; }
+
+function updateEditPreview() {
+  const code = document.getElementById('svg-editor').value;
+  const col = iconColor();
+  [[64,'eprev-64'],[48,'eprev-48'],[32,'eprev-32'],[24,'eprev-24'],[16,'eprev-16']].forEach(([sz,id]) => {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = makeSVG(code, sz, 1.5, 'round', 'round', col);
+  });
+}
+
+// Snap SVG path coordinates to grid
+function snapSVGCode(code, grid) {
+  return code.replace(/(-?\d+\.?\d*)/g, (m) => {
+    const n = parseFloat(m);
+    if (isNaN(n)) return m;
+    return String(Math.round(n/grid)*grid);
+  });
+}
+
+// Snap near-H/V segments in SVG paths
+function axisSnapSVGCode(code) {
+  // Parse simple M/L commands and snap
+  return code.replace(/([ML])\s*(-?\d+\.?\d*)\s+(-?\d+\.?\d*)\s*([ML])\s*(-?\d+\.?\d*)\s+(-?\d+\.?\d*)/g,
+    (m, c1, x1, y1, c2, x2, y2) => {
+      let nx2 = parseFloat(x2), ny2 = parseFloat(y2);
+      const dx = Math.abs(nx2 - parseFloat(x1)), dy = Math.abs(ny2 - parseFloat(y1));
+      if (dx < 1.5 && dy > 1.5) nx2 = parseFloat(x1); // vertical
+      if (dy < 1.5 && dx > 1.5) ny2 = parseFloat(y1); // horizontal
+      return `${c1} ${x1} ${y1} ${c2} ${rn(nx2)} ${rn(ny2)}`;
+    }
+  );
+}
+
+// Add rx="2" to rect elements without it
+function roundRects(code) {
+  return code.replace(/<rect([^/]*?)(\/?>)/g, (m, attrs, close) => {
+    if (/rx=/.test(attrs)) return m;
+    return `<rect${attrs} rx="2"${close}`;
+  });
+}
+
+function saveEdit() {
+  if (!editingId) return;
+  const ic = state.icons.find(x => x.id === editingId);
+  if (!ic) return;
+  let name = document.getElementById('edit-name-input').value.trim();
+  name = name || ic.name;
+  name = name.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'');
+  const tags = document.getElementById('edit-tags-input').value.split(',').map(t=>t.trim()).filter(Boolean);
+  ic.svg = document.getElementById('svg-editor').value;
+  ic.name = name;
+  ic.id = name;
+  ic.tags = tags;
+  saveIcons(); closeEditModal(); renderGrid(); renderDetail();
+  toast('保存しました');
+}
+
+// ════════════════════════════════════════════════════
+//  IMPORT / EXPORT
+// ════════════════════════════════════════════════════
+function handleFiles(files) {
+  Array.from(files).forEach(f => {
+    const r = new FileReader();
+    r.onload = e => {
+      if (f.name.endsWith('.json')) {
+        try {
+          const data = JSON.parse(e.target.result);
+          const arr = Array.isArray(data) ? data : [data];
+          let added = 0;
+          arr.forEach(ic => {
+            if (ic.name && ic.svg) {
+              const id = ic.id || ic.name.toLowerCase().replace(/\s+/g,'-');
+              if (!state.icons.find(x=>x.id===id)) {
+                state.icons.push({id, name:ic.name, svg:ic.svg, tags:ic.tags||[], isDefault:false, createdAt:Date.now()});
+                added++;
+              }
+            }
+          });
+          saveIcons(); renderGrid(); toast(`${added}件インポートしました`);
+        } catch { toast('JSONの解析に失敗しました'); }
+      } else if (f.name.endsWith('.svg')) {
+        const doc = new DOMParser().parseFromString(e.target.result, 'image/svg+xml');
+        const svgEl = doc.querySelector('svg');
+        if (!svgEl) { toast('無効なSVGです'); return; }
+        const inner = Array.from(svgEl.children).filter(el=>!['defs','title','desc','style'].includes(el.tagName.toLowerCase())).map(el=>el.outerHTML).join('');
+        const base = f.name.replace(/\.svg$/i,'').toLowerCase().replace(/\s+/g,'-');
+        let id = base, n = 1;
+        while (state.icons.find(x=>x.id===id)) id = `${base}-${n++}`;
+        state.icons.push({id, name:base, svg:inner, tags:[], isDefault:false, createdAt:Date.now()});
+        saveIcons(); renderGrid(); toast(`${base}をインポートしました`);
+      }
+    };
+    r.readAsText(f);
+  });
+}
+
+// ════════════════════════════════════════════════════
+//  THEME
+// ════════════════════════════════════════════════════
+function setTheme(dark) {
+  state.dark = dark;
+  document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+  localStorage.setItem('campus-theme', dark ? 'dark' : 'light');
+  const ic = document.getElementById('theme-ic');
+  ic.innerHTML = dark
+    ? '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>'
+    : '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+}
+
+// ════════════════════════════════════════════════════
+//  TOAST
+// ════════════════════════════════════════════════════
+let _tt;
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.classList.add('show');
+  clearTimeout(_tt); _tt = setTimeout(() => el.classList.remove('show'), 2200);
+}
+
+// ════════════════════════════════════════════════════
+//  INIT
+// ════════════════════════════════════════════════════
+function init() {
+  loadState();
+  setTheme(state.dark);
+  renderGrid();
+  renderDetail();
+
+  document.getElementById('search-input').addEventListener('input', e => { state.search = e.target.value; renderGrid(); });
+  document.getElementById('new-btn').addEventListener('click', openDrawModal);
+  document.getElementById('draw-close-btn').addEventListener('click', closeDrawModal);
+  document.getElementById('draw-cancel-btn').addEventListener('click', closeDrawModal);
+  document.getElementById('draw-overlay').addEventListener('click', e => { if(e.target===e.currentTarget) closeDrawModal(); });
+  document.getElementById('ai-generate-btn').addEventListener('click', generateIcon);
+  document.getElementById('ai-copy-prompt-btn').addEventListener('click', () => {
+    const txt = document.getElementById('ai-claude-prompt').value;
+    copyText(txt);
+    toast('プロンプトをコピーしました');
+  });
+  document.getElementById('ai-svg-code').addEventListener('input', e => updateAIPreview(e.target.value));
+  document.getElementById('save-icon-btn').addEventListener('click', saveNewIcon);
+
+  // 名前を手入力したら自動補完で上書きしないようフラグを立てる
+  document.getElementById('icon-name-input').addEventListener('input', e => {
+    if (e.target.value.trim()) e.target.dataset.touched = '1';
+    else delete e.target.dataset.touched;
+  });
+
+  // 画像添付：クリックで選択
+  const imgDrop = document.getElementById('ai-img-drop');
+  const imgInput = document.getElementById('ai-img-input');
+  imgDrop.addEventListener('click', e => {
+    if (e.target.closest('#ai-img-clear')) return;
+    imgInput.click();
+  });
+  imgInput.addEventListener('change', e => { if (e.target.files[0]) readImageFile(e.target.files[0]); });
+  document.getElementById('ai-img-clear').addEventListener('click', e => { e.stopPropagation(); clearAttachedImage(); });
+  // ドラッグ&ドロップ
+  imgDrop.addEventListener('dragover', e => { e.preventDefault(); imgDrop.classList.add('dragover'); });
+  imgDrop.addEventListener('dragleave', () => imgDrop.classList.remove('dragover'));
+  imgDrop.addEventListener('drop', e => {
+    e.preventDefault(); e.stopPropagation(); imgDrop.classList.remove('dragover');
+    if (e.dataTransfer.files[0]) readImageFile(e.dataTransfer.files[0]);
+  });
+  // 貼り付け（モーダルが開いている時のみ）
+  document.addEventListener('paste', e => {
+    if (document.getElementById('draw-overlay').classList.contains('hidden')) return;
+    const item = Array.from(e.clipboardData.items).find(it => it.type.startsWith('image/'));
+    if (item) { e.preventDefault(); readImageFile(item.getAsFile()); }
+  });
+
+  // Edit modal
+  document.getElementById('edit-close-btn').addEventListener('click', closeEditModal);
+  document.getElementById('edit-cancel-btn').addEventListener('click', closeEditModal);
+  document.getElementById('edit-overlay').addEventListener('click', e => { if(e.target===e.currentTarget) closeEditModal(); });
+  document.getElementById('svg-editor').addEventListener('input', updateEditPreview);
+  document.getElementById('edit-save-btn').addEventListener('click', saveEdit);
+  document.getElementById('refine-gen-btn').addEventListener('click', generateRefinePrompt);
+  document.getElementById('refine-copy-btn').addEventListener('click', () => {
+    copyText(document.getElementById('refine-prompt').value);
+    toast('調整プロンプトをコピーしました');
+  });
+  document.getElementById('edit-snap-grid').addEventListener('click', () => {
+    const ed = document.getElementById('svg-editor');
+    ed.value = snapSVGCode(ed.value, 0.5);
+    updateEditPreview(); toast('0.5pxグリッドにスナップしました');
+  });
+  document.getElementById('edit-snap-axis').addEventListener('click', () => {
+    const ed = document.getElementById('svg-editor');
+    ed.value = axisSnapSVGCode(ed.value);
+    updateEditPreview(); toast('H/V軸にスナップしました');
+  });
+  document.getElementById('edit-normalize-rects').addEventListener('click', () => {
+    const ed = document.getElementById('svg-editor');
+    ed.value = roundRects(ed.value);
+    updateEditPreview(); toast('矩形の角を丸めました (rx="2")');
+  });
+
+  // Import/Export
+  document.getElementById('import-btn').addEventListener('click', () => document.getElementById('file-input').click());
+  document.getElementById('file-input').addEventListener('change', e => { handleFiles(e.target.files); e.target.value=''; });
+  document.getElementById('export-btn').addEventListener('click', () => {
+    const blob = new Blob([JSON.stringify(state.icons, null, 2)], {type:'application/json'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = 'campus-icons.json'; a.click();
+    URL.revokeObjectURL(a.href); toast('エクスポートしました');
+  });
+
+  // Theme
+  document.getElementById('theme-btn').addEventListener('click', () => setTheme(!state.dark));
+
+  // Keyboard
+  document.addEventListener('keydown', e => {
+    if (e.key==='Escape') {
+      if (!document.getElementById('edit-overlay').classList.contains('hidden')) closeEditModal();
+      else if (!document.getElementById('draw-overlay').classList.contains('hidden')) closeDrawModal();
+      else if (state.selectedId) { state.selectedId=null; renderGrid(); renderDetail(); }
+    }
+  });
+
+  // Drag & Drop
+  document.getElementById('grid-area').addEventListener('dragover', e => e.preventDefault());
+  document.getElementById('grid-area').addEventListener('drop', e => { e.preventDefault(); handleFiles(e.dataTransfer.files); });
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
